@@ -26,6 +26,8 @@ export class AppModule {
       injector: this.injector,
     });
 
-    customElements.define('legacy-angular13-widget', el);
+    if (!customElements.get('legacy-angular13-widget')) {
+      customElements.define('legacy-angular13-widget', el);
+    }
   }
 }
