@@ -1,18 +1,12 @@
 <section style="padding: 16px; border: 1px solid #ccc; border-radius: 8px">
-  <h2>MFE Angular 13</h2>
+  <h2>{{ 'mfe.title' | translate }}</h2>
   <p>
-    Este microfrontend viene del repo mfe-angular13 y tiene una versión de
-    Angular 13.
+    {{ 'mfe.text1' | translate }}
   </p>
 
   <p>
-    Abajo se encuentra un ejemplo de un componente de Angular Material 13, el cual se puede usar sin problemas dentro de este microfrontend. El componente se encuentra
-    en el archivo legacy-widget.component.html y se muestra a continuación:
+    {{ 'mfe.text2' | translate }}
   </p>
 
-  <mat-tab-group>
-    <mat-tab label="First"> Content 1 </mat-tab>
-    <mat-tab label="Second"> Content 2 </mat-tab>
-    <mat-tab label="Third"> Content 3 </mat-tab>
-  </mat-tab-group>
+  <app-tabs></app-tabs>
 </section>

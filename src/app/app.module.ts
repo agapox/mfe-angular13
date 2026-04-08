@@ -7,13 +7,25 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTabsModule } from '@angular/material/tabs';
 import { LegacyWidgetComponent } from './legacy-widget/legacy-widget.component';
 import { createCustomElement } from '@angular/elements';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { TabsComponent } from './components/tabs/tabs.component';
 
 @NgModule({
-  declarations: [AppComponent, LegacyWidgetComponent],
+  declarations: [AppComponent, LegacyWidgetComponent, TabsComponent],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: httpLoaderFactory,
+        deps: [HttpClient],
+      },
+    }),
+    AppRoutingModule,
     MatTabsModule,
   ],
   providers: [],
@@ -32,4 +44,12 @@ export class AppModule {
       console.log('legacy-angular13-widget registrado como custom element');
     }
   }
+}
+
+export function httpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(
+    http,
+    'http://localhost:4201/assets/i18n/',
+    '.json',
+  );
 }
