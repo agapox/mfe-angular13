@@ -2,7 +2,10 @@
   "mfe": {
     "title": "MFE Angular 13 English",
     "text1": "This microfrontend comes from the mfe-angular13 repo and has an Angular 13  and Material Angular 13 version.",
-    "text2": "Below is an example of an Angular Material 13 component, which can be used without any issues within this microfrontend. The component is located in the file legacy-widget.component.html and is shown below:"
+    "text2": "Below is an example of an Angular Material 13 component, which can be used without any issues within this microfrontend. The component is located in the file legacy-widget.component.html and is shown below:",
+    "selectedUser": "Selected User in MFE Angular 13:",
+    "name": "Name",
+    "ein": "EIN Document"
   },
   "tabs": {
     "tab1": "Tab 1",

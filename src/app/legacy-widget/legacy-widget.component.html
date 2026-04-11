@@ -1,4 +1,4 @@
-<section style="padding: 16px; border: 1px solid #ccc; border-radius: 8px">
+<section style="padding: 16px; border: 1px solid #ccc; border-radius: 8px; background-color: rgb(254, 227, 255);">
   <h2>{{ 'mfe.title' | translate }}</h2>
   <p>
     {{ 'mfe.text1' | translate }}
@@ -8,12 +8,17 @@
     {{ 'mfe.text2' | translate }}
   </p>
 
-  <div
+  <div 
     *ngIf="selectedUser | async as user"
-    style="margin: 1rem 0; padding: 1rem; border: 1px solid #ccc; border-radius: 8px;">
-    <h4>Current User:</h4>
-    <div><b>Name:</b> {{ user.firstName }} {{ user.lastName }}</div>
-    <div><b>EIN:</b> {{ user.ein }}</div>
+    style="display: flex; gap: 1rem; align-items: center; background-color: white; padding: 1rem; border-radius: 12px">
+    <div>
+      <p>{{ 'mfe.selectedUser' | translate }}</p>
+      <h3>
+        {{ 'mfe.name' | translate }}: {{ user.firstName }} {{ user.lastName }}
+        <br/>
+        {{ 'mfe.ein' | translate }}: {{ user.ein }}
+      </h3>
+    </div>
   </div>
 
   <app-tabs></app-tabs>
