@@ -8,5 +8,13 @@
     {{ 'mfe.text2' | translate }}
   </p>
 
+  <div
+    *ngIf="selectedUser | async as user"
+    style="margin: 1rem 0; padding: 1rem; border: 1px solid #ccc; border-radius: 8px;">
+    <h4>Current User:</h4>
+    <div><b>Name:</b> {{ user.firstName }} {{ user.lastName }}</div>
+    <div><b>EIN:</b> {{ user.ein }}</div>
+  </div>
+
   <app-tabs></app-tabs>
 </section>
