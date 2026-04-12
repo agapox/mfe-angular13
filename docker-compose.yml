@@ -1,0 +1,46 @@
+services:
+  trivy-scan:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    entrypoint: ["/bin/sh"]
+    command:
+      - "-lc"
+      - >
+        cp -r /mfe-angular13/trivy/. /reports &&
+        echo "Trivy reports copied to /reports" &&
+        ls -1 /reports
+    volumes:
+      - ./trivy:/reports
+
+  # sonarqube:
+  #   image: sonarqube:community
+  #   profiles: ["sonar"]
+  #   ports:
+  #     - "9000:9000"
+  #   environment:
+  #     SONAR_ES_BOOTSTRAP_CHECKS_DISABLE: "true"
+  #   volumes:
+  #     - sonarqube_data:/opt/sonarqube/data
+  #     - sonarqube_logs:/opt/sonarqube/logs
+  #     - sonarqube_extensions:/opt/sonarqube/extensions
+
+  # sonar-scan:
+  #   image: sonarsource/sonar-scanner-cli:latest
+  #   profiles: ["sonar"]
+  #   depends_on:
+  #     - sonarqube
+  #   working_dir: /usr/src
+  #   volumes:
+  #     - ./:/usr/src
+  #   entrypoint: ["sonar-scanner"]
+  #   command:
+  #     - "-Dsonar.host.url=${SONAR_HOST_URL:-http://sonarqube:9000}"
+  #     - "-Dsonar.token=${SONAR_TOKEN}"
+  #     - "-Dsonar.qualitygate.wait=true"
+  #     - "-Dsonar.projectBaseDir=/usr/src"
+
+# volumes:
+#   sonarqube_data:
+#   sonarqube_logs:
+#   sonarqube_extensions:
