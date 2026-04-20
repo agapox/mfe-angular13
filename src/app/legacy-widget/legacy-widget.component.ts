@@ -1,5 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { getSelectedUser, onSelectedUserChange } from '@domain/users-sdk';
+import {
+  getSelectedUser,
+  onSelectedUserChange,
+  getSelectedUser2,
+  onSelectedUserChange2,
+} from '@domain/users-sdk';
 import { TranslateService } from '@ngx-translate/core';
 import { getStoredLanguage, onGlobalLanguageChange } from '@platform/i18n';
 import { BehaviorSubject } from 'rxjs';
@@ -15,15 +20,20 @@ export class LegacyWidgetComponent implements OnInit, OnDestroy {
   selectedUser = new BehaviorSubject<any | null>(null);
   private unsubscribeSelectedUser?: () => void;
 
+  selectedUser2 = new BehaviorSubject<any | null>(null);
+  private unsubscribeSelectedUser2?: () => void;
+
   constructor(private translateService: TranslateService) {}
 
   ngOnInit() {
     const lang = getStoredLanguage();
-    console.log(`MFE Angular 13 cargado con idioma: ${lang}`);
     this.translateService.use(lang);
 
     const currentUser = getSelectedUser();
     this.selectedUser.next(currentUser);
+
+    const currentUser2 = getSelectedUser2();
+    this.selectedUser2.next(currentUser2);
 
     this.removeLanguageListener = onGlobalLanguageChange((newLang) => {
       this.translateService.use(newLang);
@@ -34,6 +44,11 @@ export class LegacyWidgetComponent implements OnInit, OnDestroy {
       this.selectedUser.next(user);
       console.log('Selected user in Shell (user-bus):', user);
     });
+
+    this.unsubscribeSelectedUser2 = onSelectedUserChange2((user: any) => {
+      this.selectedUser2.next(user);
+      console.log('Selected user UNICREDIT in Shell (user-bus):', user);
+    });
   }
 
   // El método loadUsers ya no es necesario, todo se maneja por RxJS
@@ -41,5 +56,6 @@ export class LegacyWidgetComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.removeLanguageListener?.();
     this.unsubscribeSelectedUser?.();
+    this.unsubscribeSelectedUser2?.();
   }
 }

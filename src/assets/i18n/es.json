@@ -5,7 +5,9 @@
     "text2": "Abajo se encuentra un ejemplo de un componente de Angular Material 13, el cual se puede usar sin problemas dentro de este microfrontend. El componente se encuentra en el archivo legacy-widget.component.html y se muestra a continuación:",
     "selectedUser": "Usuario seleccionado en MFE Angular 13:",
     "name": "Nombre",
-    "ein": "Documento EIN"
+    "ein": "Documento EIN",
+    "documentNumber": "Número de documento",
+    "availableLem": "LEM disponible"
   },
   "tabs": {
     "tab1": "Pestaña 1",

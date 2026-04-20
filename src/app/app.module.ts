@@ -34,14 +34,12 @@ export class AppModule {
   constructor(private injector: Injector) {}
 
   ngDoBootstrap() {
-    console.log('MFE Angular 13 cargado y widget registrado');
     const el = createCustomElement(LegacyWidgetComponent, {
       injector: this.injector,
     });
 
     if (!customElements.get('legacy-angular13-widget')) {
       customElements.define('legacy-angular13-widget', el);
-      console.log('legacy-angular13-widget registrado como custom element');
     }
   }
 }

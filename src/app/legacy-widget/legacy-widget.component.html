@@ -8,16 +8,33 @@
     {{ 'mfe.text2' | translate }}
   </p>
 
-  <div 
-    *ngIf="selectedUser | async as user"
-    style="display: flex; gap: 1rem; align-items: center; background-color: white; padding: 1rem; border-radius: 12px">
-    <div>
-      <p>{{ 'mfe.selectedUser' | translate }}</p>
-      <h3>
-        {{ 'mfe.name' | translate }}: {{ user.firstName }} {{ user.lastName }}
-        <br/>
-        {{ 'mfe.ein' | translate }}: {{ user.ein }}
-      </h3>
+  <div style="display: flex; gap: 1rem; flex-direction: column; margin-top: 1rem;">
+    <div
+      *ngIf="selectedUser2 | async as user"
+      style="display: flex; gap: 1rem; align-items: center; background-color: white; padding: 1rem; border-radius: 12px">
+      <div>
+        <p>{{ 'mfe.selectedUser' | translate }}</p>
+        <h3>
+          {{ 'mfe.name' | translate }}: {{ user.customer[0].customerDetail.fullName }}
+          <br/>
+          {{ 'mfe.documentNumber' | translate }}: {{ user.data.identificationId }}
+          <br/>
+          {{ 'mfe.availableLem' | translate }}: {{ user.data.lineCreditValues.amountAvailableLEM }}
+        </h3>
+      </div>
+    </div>
+  
+    <div 
+      *ngIf="selectedUser | async as user"
+      style="display: flex; gap: 1rem; align-items: center; background-color: white; padding: 1rem; border-radius: 12px">
+      <div>
+        <p>{{ 'mfe.selectedUser' | translate }}</p>
+        <h3>
+          {{ 'mfe.name' | translate }}: {{ user.firstName }} {{ user.lastName }}
+          <br/>
+          {{ 'mfe.ein' | translate }}: {{ user.ein }}
+        </h3>
+      </div>
     </div>
   </div>
 
